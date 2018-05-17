@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import NavBar from './NavBar'
+import Login from './Login'
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <NavBar></NavBar>
-        Hello React
-      </div>
+        <Container>
+          <Row>
+            <Col sm="12" md={{ size: 8, offset: 2 }}><Login/></Col>
+          </Row>
+        </Container>
+      </Fragment>
     );
   }
 }
