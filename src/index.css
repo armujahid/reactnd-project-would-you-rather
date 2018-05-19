@@ -3,3 +3,13 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.avatar {
+  height: 40px;
+  border-radius: 25px;
+  margin: 10px;
+}
+
+.navbar-nav li a {
+  line-height: 40px;
+ }

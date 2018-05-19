@@ -11,11 +11,12 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { unsetAuthedUser } from '../actions/authedUser'
+import User from './User'
 
 class NavBar extends Component {
   static propTypes = {
     logout: PropTypes.func.isRequired,
-    isloggedIn: PropTypes.bool.isRequired
+    authedUser: PropTypes.string
   }
 
   state = {
@@ -28,13 +29,13 @@ class NavBar extends Component {
     });
   }
   render() {
-    const { isloggedIn } = this.props;
+    const { authedUser } = this.props;
 
     return (
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand tag={Link} to="/">Would You Rather</NavbarBrand>
-          { isloggedIn &&
+          { authedUser &&
             <Fragment>
               <NavbarToggler onClick={this.toggle} />
               <Collapse isOpen={this.state.isOpen} navbar>
@@ -47,6 +48,9 @@ class NavBar extends Component {
                   </NavItem>
                   <NavItem>
                     <NavLink tag={Link} to="/add">Add Poll</NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <User id={authedUser}/>
                   </NavItem>
                   <NavItem>
                     <NavLink onClick={this.props.logout}>Logout</NavLink>
@@ -63,7 +67,7 @@ class NavBar extends Component {
 
 function mapStateToProps ({ authedUser }) {
   return {
-    isloggedIn: authedUser !== null
+    authedUser
   }
 }
 
