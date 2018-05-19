@@ -4,5 +4,8 @@
   "env": {
     "browser": true,
     "es6": true
+  },
+  "rules": {
+    "no-case-declarations": 0
   }
 }
