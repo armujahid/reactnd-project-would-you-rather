@@ -6,7 +6,7 @@ import { showLoading, hideLoading } from 'react-redux-loading'
 export function handleInitialData () {
   return (dispatch) => {
     dispatch(showLoading())
-    return Promise.all(_getUsers(), _getQuestions())
+    return Promise.all([_getUsers(), _getQuestions()])
       .then(([ users, polls ]) => {
         dispatch(receiveUsers(users))
         dispatch(receivePolls(polls))
