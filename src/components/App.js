@@ -1,9 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+import { connect } from 'react-redux'
+import { PropTypes } from 'prop-types'
 import NavBar from './NavBar'
 import Login from './Login'
+import { handleInitialData } from '../actions/shared'
+
 
 class App extends Component {
+  static propTypes = {
+    dispatch : PropTypes.func.isRequired
+  }
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
   render() {
     return (
       <Fragment>
@@ -18,4 +28,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App)
