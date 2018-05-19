@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import {
   Collapse,
   Navbar,
@@ -14,7 +14,7 @@ import { unsetAuthedUser } from '../actions/authedUser'
 import User from './User'
 import { withRouter } from 'react-router-dom'
 
-class NavBar extends Component {
+class NavBar extends PureComponent {
   static propTypes = {
     logout: PropTypes.func.isRequired,
     authedUser: PropTypes.string,

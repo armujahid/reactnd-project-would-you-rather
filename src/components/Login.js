@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { setAuthedUser } from '../actions/authedUser'
 
-class Login extends Component {
+class Login extends PureComponent {
   static propTypes = {
     users: PropTypes.object.isRequired,
     setAuthedUser: PropTypes.func.isRequired

@@ -1,17 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-class User extends Component {
+class User extends PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired
   }
 
   render() {
     const { user } = this.props;
-    if (!user) {
-      return null
-    }
     return (
       <Fragment>
         <span>{user.name}</span>
