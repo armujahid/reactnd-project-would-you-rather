@@ -40,7 +40,7 @@ class Login extends Component {
             }
           </Input>
         </FormGroup>
-        <Button onClick={this.onLogin}>Login</Button>
+        <Button onClick={this.onLogin} disabled={!userId}>Login</Button>
       </Form>
     );
   }
