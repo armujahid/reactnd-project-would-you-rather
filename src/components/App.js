@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -10,6 +10,7 @@ import LeaderBoard from './LeaderBoard'
 import NewPoll from './NewPoll'
 import NavBar from './NavBar'
 import Login from './Login'
+import NotFound from './404Page'
 import { handleInitialData } from '../actions/shared'
 
 
@@ -32,15 +33,18 @@ class App extends Component {
           <Container>
             <Row>
               <Col sm="12" md={{ size: 8, offset: 2 }}>
-              {
-                notLoggedIn ? <Route path='/' component={Login} /> :
-                <Fragment>
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/questions/:id' component={PollDetails} />
-                  <Route path='/add' component={NewPoll} />
-                  <Route path='/leaderboard' component={LeaderBoard} />
-                </Fragment>
-              }
+              <Switch>
+                {
+                  notLoggedIn ? <Route path='/' exact component={Login} /> :
+                  <Fragment>
+                    <Route path='/' exact component={Dashboard} />
+                    <Route path='/questions/:id' component={PollDetails} />
+                    <Route path='/add' component={NewPoll} />
+                    <Route path='/leaderboard' component={LeaderBoard} />
+                  </Fragment>
+                }
+                <Route component={NotFound} />
+              </Switch>
               </Col>
             </Row>
           </Container>
