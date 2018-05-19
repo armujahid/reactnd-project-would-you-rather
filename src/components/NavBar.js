@@ -12,11 +12,13 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { unsetAuthedUser } from '../actions/authedUser'
 import User from './User'
+import { withRouter } from 'react-router-dom'
 
 class NavBar extends Component {
   static propTypes = {
     logout: PropTypes.func.isRequired,
-    authedUser: PropTypes.string
+    authedUser: PropTypes.string,
+    history: PropTypes.object.isRequired
   }
 
   state = {
@@ -28,6 +30,14 @@ class NavBar extends Component {
       isOpen: !this.state.isOpen
     });
   }
+
+  logout = (e) => {
+    e.preventDefault()
+    const { history, logout} = this.props
+    history.push('/')
+    logout()
+  }
+
   render() {
     const { authedUser } = this.props;
 
@@ -53,7 +63,7 @@ class NavBar extends Component {
                     <User id={authedUser}/>
                   </NavItem>
                   <NavItem>
-                    <NavLink onClick={this.props.logout}>Logout</NavLink>
+                    <NavLink onClick={this.logout}>Logout</NavLink>
                   </NavItem>
                 </Nav>
               </Collapse>
@@ -79,4 +89,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))
