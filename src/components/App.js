@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap';
 import { connect } from 'react-redux'
-import { PropTypes } from 'prop-types'
+import PropTypes from 'prop-types'
 import LoadingBar from 'react-redux-loading'
 import Dashboard from './Dashboard'
 import PollDetails from './PollDetails'
