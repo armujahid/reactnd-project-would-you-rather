@@ -34,12 +34,12 @@ class App extends Component {
               <Col sm="12" md={{ size: 8, offset: 2 }}>
               {
                 notLoggedIn ? <Route path='/' component={Login} /> :
-                <div>
+                <Fragment>
                   <Route path='/' exact component={Dashboard} />
                   <Route path='/questions/:id' component={PollDetails} />
                   <Route path='/add' component={NewPoll} />
                   <Route path='/leaderboard' component={LeaderBoard} />
-                </div>
+                </Fragment>
               }
               </Col>
             </Row>
