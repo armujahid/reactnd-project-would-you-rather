@@ -25,17 +25,19 @@ class Login extends Component {
 
   render() {
     const { users } = this.props;
+    const { userId } = this.state;
     return (
       <Form>
         <FormGroup>
           <Label for="userSelect">Select User</Label>
-          <Input type="select" name="select" onChange={(event) => this.onUserChange(event.target.value)}>
-          {
-            Object.keys(users).map(user =>
-            <option key={user} value={user}>
-              {users[user].name}
-            </option>)
-          }
+          <Input type="select" name="select" value={userId} onChange={(event) => this.onUserChange(event.target.value)}>
+            <option value="" disabled>Please select</option>
+            {
+              Object.keys(users).map(user =>
+              <option key={user} value={user}>
+                {users[user].name}
+              </option>)
+            }
           </Input>
         </FormGroup>
         <Button onClick={this.onLogin}>Login</Button>
