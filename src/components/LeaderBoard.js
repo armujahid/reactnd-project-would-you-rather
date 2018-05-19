@@ -1,13 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import NavBar from './NavBar'
+import React, { Component } from 'react';
 
 class LeaderBoard extends Component {
   render() {
     return (
-      <Fragment>
-        <NavBar/>
-        <div>LeaderBoard Page</div>
-      </Fragment>
+      <div>LeaderBoard Page</div>
     );
   }
 }

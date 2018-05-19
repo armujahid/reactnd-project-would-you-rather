@@ -1,13 +1,9 @@
-import React, { Component, Fragment } from 'react';
-import NavBar from './NavBar'
+import React, { Component } from 'react';
 
 class NewPoll extends Component {
   render() {
     return (
-      <Fragment>
-        <NavBar/>
-        <div>New Poll Page</div>
-      </Fragment>
+      <div>New Poll Page</div>
     );
   }
 }
