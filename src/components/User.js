@@ -15,7 +15,7 @@ class User extends Component {
     return (
       <Fragment>
         <span>{user.name}</span>
-        <img src={user.avatarURL} className='avatar'/>
+        <img src={user.avatarURL} className='avatar' alt={`Avatar of ${user.name}`}/>
       </Fragment>
     );
   }
