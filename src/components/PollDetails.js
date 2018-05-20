@@ -10,7 +10,7 @@ class PollDetails extends PureComponent {
   static propTypes = {
     poll: PropTypes.object,
     pollAuthor: PropTypes.object,
-    authedUser: PropTypes.string.isRequired,
+    isAnswered: PropTypes.bool.isRequired,
     savePollAnswer: PropTypes.func.isRequired
   }
 
@@ -30,11 +30,16 @@ class PollDetails extends PureComponent {
   }
 
   render() {
-    const { poll, pollAuthor, authedUser } = this.props
+    const { poll, pollAuthor, isAnswered} = this.props
 
     if (!poll) {
       return <Redirect to='/404' />
     }
+
+    const optionOneVotes = poll.optionOne.votes.length;
+    const optionTwoVotes = poll.optionTwo.votes.length;
+    const percentageOptionOne = optionOneVotes / (optionOneVotes + optionTwoVotes) * 100
+    const percentageOptionTwo = optionTwoVotes / (optionOneVotes + optionTwoVotes) * 100
 
     return (
       <Card>
@@ -43,23 +48,29 @@ class PollDetails extends PureComponent {
         </CardHeader>
         <CardBody>
           <CardTitle>Would You Rather</CardTitle>
-          <Form onSubmit={this.handleSubmit}>
-            <FormGroup tag="fieldset">
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio1" value="optionOne" onChange={this.radioSelected}/>{' '}
-                  {poll.optionOne.text}
-                </Label>
+          {isAnswered?
+            <ul>
+              <li>{poll.optionOne.text} ({optionOneVotes} vote(s) | {percentageOptionOne}%)</li>
+              <li>{poll.optionTwo.text} ({optionTwoVotes} vote(s) | {percentageOptionTwo}%)</li>
+            </ul>:
+            <Form onSubmit={this.handleSubmit}>
+              <FormGroup tag="fieldset">
+                <FormGroup check>
+                  <Label check>
+                    <Input type="radio" name="radio1" value="optionOne" onChange={this.radioSelected}/>{' '}
+                    {poll.optionOne.text}
+                  </Label>
+                </FormGroup>
+                <FormGroup check>
+                  <Label check>
+                    <Input type="radio" name="radio1" value="optionTwo" onChange={this.radioSelected}/>{' '}
+                    {poll.optionTwo.text}
+                  </Label>
+                </FormGroup>
               </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio1" value="optionTwo" onChange={this.radioSelected}/>{' '}
-                  {poll.optionTwo.text}
-                </Label>
-              </FormGroup>
-            </FormGroup>
-            <Button>Submit</Button>
-          </Form>
+              <Button>Submit</Button>
+            </Form>
+          }
         </CardBody>
       </Card>
     );
@@ -70,10 +81,12 @@ function mapStateToProps ({ polls, users, authedUser }, props) {
   const { id } = props.match.params
   const poll = polls[id]
   const pollAuthor = users[poll.author];
+  const isAnswered = poll.optionOne.votes.includes(authedUser) ||
+    poll.optionTwo.votes.includes(authedUser)
   return {
     poll,
     pollAuthor,
-    authedUser
+    isAnswered
   }
 }
 
