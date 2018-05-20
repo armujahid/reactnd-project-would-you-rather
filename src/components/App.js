@@ -16,11 +16,11 @@ import { handleInitialData } from '../actions/shared'
 
 class App extends Component {
   static propTypes = {
-    dispatch : PropTypes.func.isRequired,
+    handleInitialData : PropTypes.func.isRequired,
     notLoggedIn: PropTypes.bool.isRequired
   }
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    this.props.handleInitialData()
   }
   render() {
     const { notLoggedIn } = this.props
@@ -61,4 +61,12 @@ function mapStateToProps ({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+function mapDispatchToProps(dispatch) {
+  return {
+    handleInitialData: () => {
+      dispatch(handleInitialData())
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
