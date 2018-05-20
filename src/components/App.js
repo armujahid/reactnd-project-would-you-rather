@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import LoadingBar from 'react-redux-loading'
@@ -14,7 +14,7 @@ import NotFound from './404Page'
 import { handleInitialData } from '../actions/shared'
 
 
-class App extends Component {
+class App extends PureComponent {
   static propTypes = {
     handleInitialData : PropTypes.func.isRequired,
     notLoggedIn: PropTypes.bool.isRequired
@@ -31,22 +31,18 @@ class App extends Component {
           <LoadingBar />
           <NavBar/>
           <Container>
-            <Row>
-              <Col sm="12" md={{ size: 8, offset: 2 }}>
-              <Switch>
-                {
-                  notLoggedIn ? <Route path='/' exact component={Login} /> :
-                  <Fragment>
-                    <Route path='/' exact component={Dashboard} />
-                    <Route path='/questions/:id' component={PollDetails} />
-                    <Route path='/add' component={NewPoll} />
-                    <Route path='/leaderboard' component={LeaderBoard} />
-                  </Fragment>
-                }
-                <Route component={NotFound} />
-              </Switch>
-              </Col>
-            </Row>
+            <Switch>
+              {
+                notLoggedIn ? <Route path='/' exact component={Login} /> :
+                <Fragment>
+                  <Route path='/' exact component={Dashboard} />
+                  <Route path='/questions/:id' component={PollDetails} />
+                  <Route path='/add' component={NewPoll} />
+                  <Route path='/leaderboard' component={LeaderBoard} />
+                </Fragment>
+              }
+              <Route component={NotFound} />
+            </Switch>
           </Container>
         </Fragment>
       </Router>
