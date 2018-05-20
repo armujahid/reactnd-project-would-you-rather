@@ -12,4 +12,8 @@ body {
 
 .navbar-nav li a {
   line-height: 40px;
- }
+}
+
+.nav-item {
+  cursor: pointer;
+}
