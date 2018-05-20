@@ -38,6 +38,8 @@ class PollDetails extends PureComponent {
       return <Redirect to='/404' />
     }
 
+    const { selectedOption } = this.state
+
     const optionOneVotes = poll.optionOne.votes.length;
     const optionTwoVotes = poll.optionTwo.votes.length;
     const percentageOptionOne = (optionOneVotes / (optionOneVotes + optionTwoVotes) * 100).toFixed(2)
@@ -74,7 +76,7 @@ class PollDetails extends PureComponent {
                       </Label>
                     </FormGroup>
                   </FormGroup>
-                  <Button>Submit</Button>
+                  <Button disabled={selectedOption === ''}>Submit</Button>
                 </Form>
               }
             </CardBody>
