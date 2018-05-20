@@ -4,6 +4,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col } from 'reactstrap
 import classnames from 'classnames';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import './Dashboard.css'
 
 class DashBoard extends PureComponent {
   propTypes = {
