@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
-import { Card, CardHeader,CardBody, CardTitle, FormGroup, Label, Input, Form, Button} from 'reactstrap';
+import { Card, CardHeader,CardBody, CardTitle, FormGroup, Label, Input, Form, Button, Row, Col} from 'reactstrap';
 import FaCheck from 'react-icons/lib/fa/check'
 import User from './User'
 import { handleSavePollAnswer } from '../actions/shared'
@@ -46,37 +46,41 @@ class PollDetails extends PureComponent {
     const check = <FaCheck size="40" color='green'/>
 
     return (
-      <Card>
-        <CardHeader>
-          <User id={pollAuthor.id}/>
-        </CardHeader>
-        <CardBody>
-          <CardTitle>Would You Rather</CardTitle>
-          {isAnswered?
-            <ul>
-              <li>{poll.optionOne.text} ({optionOneVotes} vote(s) | {percentageOptionOne}%){isOptionOneAnswered ? check : null}</li>
-              <li>{poll.optionTwo.text} ({optionTwoVotes} vote(s) | {percentageOptionTwo}%){!isOptionOneAnswered ? check : null}</li>
-            </ul>:
-            <Form onSubmit={this.handleSubmit}>
-              <FormGroup tag="fieldset">
-                <FormGroup check>
-                  <Label check>
-                    <Input type="radio" name="radio1" value="optionOne" onChange={this.radioSelected}/>{' '}
-                    {poll.optionOne.text}
-                  </Label>
-                </FormGroup>
-                <FormGroup check>
-                  <Label check>
-                    <Input type="radio" name="radio1" value="optionTwo" onChange={this.radioSelected}/>{' '}
-                    {poll.optionTwo.text}
-                  </Label>
-                </FormGroup>
-              </FormGroup>
-              <Button>Submit</Button>
-            </Form>
-          }
-        </CardBody>
-      </Card>
+      <Row>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <Card>
+            <CardHeader>
+              <User id={pollAuthor.id}/>
+            </CardHeader>
+            <CardBody>
+              <CardTitle>Would You Rather</CardTitle>
+              {isAnswered?
+                <ul>
+                  <li>{poll.optionOne.text} ({optionOneVotes} vote(s) | {percentageOptionOne}%){isOptionOneAnswered ? check : null}</li>
+                  <li>{poll.optionTwo.text} ({optionTwoVotes} vote(s) | {percentageOptionTwo}%){!isOptionOneAnswered ? check : null}</li>
+                </ul>:
+                <Form onSubmit={this.handleSubmit}>
+                  <FormGroup tag="fieldset">
+                    <FormGroup check>
+                      <Label check>
+                        <Input type="radio" name="radio1" value="optionOne" onChange={this.radioSelected}/>{' '}
+                        {poll.optionOne.text}
+                      </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                      <Label check>
+                        <Input type="radio" name="radio1" value="optionTwo" onChange={this.radioSelected}/>{' '}
+                        {poll.optionTwo.text}
+                      </Label>
+                    </FormGroup>
+                  </FormGroup>
+                  <Button>Submit</Button>
+                </Form>
+              }
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }
