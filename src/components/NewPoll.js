@@ -1,9 +1,63 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
+import { Card, CardBody, CardTitle, FormGroup, Label, Input, Form, Button, Row, Col} from 'reactstrap';
 
-class NewPoll extends Component {
+class NewPoll extends PureComponent {
+  state = {
+    optionOne: '',
+    optionTwo: ''
+  }
+
+  handleOptionOneChange = (e) => {
+    e.preventDefault()
+    this.setState({
+      optionOne : e.target.value
+    })
+  }
+
+  handleOptionTwoChange = (e) => {
+    e.preventDefault()
+    this.setState({
+      optionTwo : e.target.value
+    })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+  }
+
   render() {
+    const { optionOne, optionTwo } = this.state
+
     return (
-      <div>New Poll Page</div>
+      <Row>
+        <Col sm="12" md={{ size: 6, offset: 3 }}>
+          <Card>
+            <CardBody>
+              <CardTitle>Would You Rather</CardTitle>
+              <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                  <Label for="optionOne">Option One</Label>
+                  <Input type="text"
+                    name="optionOne"
+                    value={optionOne}
+                    onChange={this.handleOptionOneChange}
+                    placeholder="Option One" />
+                </FormGroup>
+                <FormGroup>
+                  <Label for="optionTwo">Option Two</Label>
+                  <Input type="text"
+                    name="optionTwo"
+                    value={optionTwo}
+                    onChange={this.handleOptionTwoChange}
+                    placeholder="Option Two" />
+                </FormGroup>
+                <Button disabled={optionOne === '' || optionTwo === ''}>Submit</Button>
+              </Form>
+            </CardBody>
+          </Card>
+        </Col>
+      </Row>
     );
   }
 }
