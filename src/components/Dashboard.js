@@ -70,10 +70,12 @@ class DashBoard extends PureComponent {
 
 function mapStateToProps ({ polls, users, authedUser }) {
   const user = users[authedUser];
-  const answeredPolls = Object.keys(user.answers);
+  const answeredPolls = Object.keys(user.answers)
+    .sort((a,b) => polls[b].timestamp - polls[a].timestamp)
   return {
     answeredPolls,
     unansweredPolls : Object.keys(polls).filter(qid => !answeredPolls.includes(qid))
+      .sort((a,b) => polls[b].timestamp - polls[a].timestamp)
   }
 }
 
