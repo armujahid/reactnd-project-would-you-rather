@@ -25,7 +25,7 @@ class DashBoard extends PureComponent {
     const { answeredPolls, unansweredPolls } = this.props
     return (
       <div>
-        <Nav tabs>
+        <Nav tabs className="justify-content-center">
           <NavItem>
             <NavLink
               className={classnames({ active: this.state.activeTab === '1' })}
