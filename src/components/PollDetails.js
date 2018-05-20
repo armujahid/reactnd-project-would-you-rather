@@ -6,6 +6,8 @@ import { Card, CardHeader,CardBody, CardTitle, FormGroup, Label, Input, Form, Bu
 import FaCheck from 'react-icons/lib/fa/check'
 import User from './User'
 import { handleSavePollAnswer } from '../actions/shared'
+import { formatDate } from '../utils/helpers'
+import './PollDetails.css'
 
 class PollDetails extends PureComponent {
   static propTypes = {
@@ -53,6 +55,7 @@ class PollDetails extends PureComponent {
           <Card>
             <CardHeader>
               <User id={pollAuthor.id}/>
+              <div className="date">{formatDate(poll.timestamp)}</div>
             </CardHeader>
             <CardBody>
               <CardTitle>Would You Rather</CardTitle>
