@@ -1,7 +1,15 @@
 import React, { PureComponent } from 'react';
 import { Card, CardBody, CardTitle, FormGroup, Label, Input, Form, Button, Row, Col} from 'reactstrap';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { handleAddPoll } from '../actions/polls'
+
 
 class NewPoll extends PureComponent {
+  static propTypes = {
+    addPoll: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
+  }
   state = {
     optionOne: '',
     optionTwo: ''
@@ -23,7 +31,10 @@ class NewPoll extends PureComponent {
 
   handleSubmit = (e) => {
     e.preventDefault()
-
+    const { optionOne, optionTwo } = this.state
+    this.props.addPoll(optionOne, optionTwo)
+    const { history } = this.props
+    history.push('/')
   }
 
   render() {
@@ -62,4 +73,13 @@ class NewPoll extends PureComponent {
   }
 }
 
-export default NewPoll
+
+function mapDispatchToProps(dispatch) {
+  return {
+    addPoll: (optionOne, optionTwo) => {
+      dispatch(handleAddPoll(optionOne, optionTwo))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NewPoll)
