@@ -17,3 +17,7 @@ body {
 .nav-item {
   cursor: pointer;
 }
+
+td {
+  line-height: 60px;
+}

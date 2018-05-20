@@ -24,7 +24,7 @@ class LeaderBoard extends PureComponent {
         <tbody>
           { table.map((user, index) =>
             <tr key={user.id}>
-              <th scope="row">{index + 1}</th>
+              <td>{index + 1}</td>
               <td><User id={user.id}/></td>
               <td>{user.created}</td>
               <td>{user.answered}</td>
