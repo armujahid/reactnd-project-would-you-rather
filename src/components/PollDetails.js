@@ -40,8 +40,8 @@ class PollDetails extends PureComponent {
 
     const optionOneVotes = poll.optionOne.votes.length;
     const optionTwoVotes = poll.optionTwo.votes.length;
-    const percentageOptionOne = optionOneVotes / (optionOneVotes + optionTwoVotes) * 100
-    const percentageOptionTwo = optionTwoVotes / (optionOneVotes + optionTwoVotes) * 100
+    const percentageOptionOne = (optionOneVotes / (optionOneVotes + optionTwoVotes) * 100).toFixed(2)
+    const percentageOptionTwo = (optionTwoVotes / (optionOneVotes + optionTwoVotes) * 100).toFixed(2)
 
     const check = <FaCheck size="40" color='green'/>
 
