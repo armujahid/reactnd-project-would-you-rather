@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 class DashBoard extends PureComponent {
-  propTypes = {
+  static propTypes = {
     answeredPolls : PropTypes.array.isRequired,
     unansweredPolls : PropTypes.array.isRequired
   }
@@ -47,7 +47,7 @@ class DashBoard extends PureComponent {
           <TabPane tabId="1">
             <Row>
               {unansweredPolls.map(qid =>
-              <Col key={qid} sm="4">
+              <Col key={qid} sm="6" md="4">
                 <Poll id={qid}/>
               </Col>
               )}
@@ -56,7 +56,7 @@ class DashBoard extends PureComponent {
           <TabPane tabId="2">
             <Row>
               {answeredPolls.map(qid =>
-              <Col key={qid} sm="4">
+              <Col key={qid} sm="6" md="4">
                 <Poll id={qid}/>
               </Col>
               )}
