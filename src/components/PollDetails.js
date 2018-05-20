@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { Card, CardHeader,CardBody, CardTitle, FormGroup, Label, Input, Form, Button} from 'reactstrap';
+import FaCheck from 'react-icons/lib/fa/check'
 import User from './User'
 import { handleSavePollAnswer } from '../actions/shared'
 
@@ -11,6 +12,7 @@ class PollDetails extends PureComponent {
     poll: PropTypes.object,
     pollAuthor: PropTypes.object,
     isAnswered: PropTypes.bool.isRequired,
+    isOptionOneAnswered: PropTypes.bool.isRequired,
     savePollAnswer: PropTypes.func.isRequired
   }
 
@@ -30,7 +32,7 @@ class PollDetails extends PureComponent {
   }
 
   render() {
-    const { poll, pollAuthor, isAnswered} = this.props
+    const { poll, pollAuthor, isAnswered, isOptionOneAnswered} = this.props
 
     if (!poll) {
       return <Redirect to='/404' />
@@ -41,6 +43,8 @@ class PollDetails extends PureComponent {
     const percentageOptionOne = optionOneVotes / (optionOneVotes + optionTwoVotes) * 100
     const percentageOptionTwo = optionTwoVotes / (optionOneVotes + optionTwoVotes) * 100
 
+    const check = <FaCheck size="40" color='green'/>
+
     return (
       <Card>
         <CardHeader>
@@ -50,8 +54,8 @@ class PollDetails extends PureComponent {
           <CardTitle>Would You Rather</CardTitle>
           {isAnswered?
             <ul>
-              <li>{poll.optionOne.text} ({optionOneVotes} vote(s) | {percentageOptionOne}%)</li>
-              <li>{poll.optionTwo.text} ({optionTwoVotes} vote(s) | {percentageOptionTwo}%)</li>
+              <li>{poll.optionOne.text} ({optionOneVotes} vote(s) | {percentageOptionOne}%){isOptionOneAnswered ? check : null}</li>
+              <li>{poll.optionTwo.text} ({optionTwoVotes} vote(s) | {percentageOptionTwo}%){!isOptionOneAnswered ? check : null}</li>
             </ul>:
             <Form onSubmit={this.handleSubmit}>
               <FormGroup tag="fieldset">
@@ -81,12 +85,14 @@ function mapStateToProps ({ polls, users, authedUser }, props) {
   const { id } = props.match.params
   const poll = polls[id]
   const pollAuthor = users[poll.author];
-  const isAnswered = poll.optionOne.votes.includes(authedUser) ||
-    poll.optionTwo.votes.includes(authedUser)
+  const isOptionOneAnswered = poll.optionOne.votes.includes(authedUser)
+  const isOptionTwoAnswered = poll.optionTwo.votes.includes(authedUser)
+  const isAnswered = isOptionOneAnswered || isOptionTwoAnswered
   return {
     poll,
     pollAuthor,
-    isAnswered
+    isAnswered,
+    isOptionOneAnswered
   }
 }
 
