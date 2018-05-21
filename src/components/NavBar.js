@@ -54,7 +54,7 @@ class NavBar extends PureComponent {
                     <NavLink tag={Link} to="/">Home</NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink tag={Link} to="/leaderboard">Leader Board</NavLink>
+                    <NavLink tag={Link} to="/leaderboard">Leaderboard</NavLink>
                   </NavItem>
                   <NavItem>
                     <NavLink tag={Link} to="/add">Add Poll</NavLink>
