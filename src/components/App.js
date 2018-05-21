@@ -1,6 +1,5 @@
 import React, { PureComponent, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { Container } from 'reactstrap';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import LoadingBar from 'react-redux-loading'
@@ -28,22 +27,24 @@ class App extends PureComponent {
     return (
       <Router>
         <Fragment>
-          <LoadingBar />
-          <NavBar/>
-          <Container>
-            <Switch>
-              {
-                notLoggedIn ? <Route path='/' exact component={Login} /> :
-                <Fragment>
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/questions/:id' component={PollDetails} />
-                  <Route path='/add' component={NewPoll} />
-                  <Route path='/leaderboard' component={LeaderBoard} />
-                </Fragment>
-              }
-              <Route component={NotFound} />
-            </Switch>
-          </Container>
+          <LoadingBar className="loading-bar"/>
+          <div className="main-container">
+            <NavBar />
+            <div className="container">
+              <Switch>
+                {
+                  notLoggedIn ? <Route path='/' exact component={Login} /> :
+                  <Fragment>
+                    <Route path='/' exact component={Dashboard} />
+                    <Route path='/questions/:id' component={PollDetails} />
+                    <Route path='/add' component={NewPoll} />
+                    <Route path='/leaderboard' component={LeaderBoard} />
+                  </Fragment>
+                }
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          </div>
         </Fragment>
       </Router>
     );
