@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 class User extends PureComponent {
   static propTypes = {
-    id: PropTypes.string.isRequired,
     user: PropTypes.object.isRequired
   }
 

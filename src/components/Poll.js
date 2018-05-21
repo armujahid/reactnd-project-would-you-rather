@@ -24,7 +24,6 @@ const Poll = (props) => {
 }
 
 Poll.propTypes = {
-  id: PropTypes.string.isRequired,
   poll: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired
 }
