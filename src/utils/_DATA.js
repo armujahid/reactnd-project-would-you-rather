@@ -157,6 +157,14 @@ export function _saveQuestion (question) {
         [formattedQuestion.id]: formattedQuestion
       }
 
+      users = {
+        ...users,
+        [formattedQuestion.author] : {
+          ...users[formattedQuestion.author],
+          questions : users[formattedQuestion.author].questions.concat([formattedQuestion.id])
+        }
+      }
+
       res(formattedQuestion)
     }, 1000)
   })
