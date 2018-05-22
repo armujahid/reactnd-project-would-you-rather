@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Card, CardBody, CardTitle, FormGroup, Label, Input, Form, Button, Row, Col} from 'reactstrap';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { handleAddPoll } from '../actions/polls'
+import { handleAddPoll } from '../actions/shared'
 
 
 class NewPoll extends PureComponent {
