@@ -1,4 +1,4 @@
-# Would You Rather Project [![Build Status](https://travis-ci.org/armujahid/reactnd-project-would-you-rather.svg?branch=master)](https://travis-ci.org/armujahid/reactnd-project-would-you-rather)
+# Would You Rather Project [![Build Status](https://travis-ci.org/armujahid/reactnd-project-would-you-rather.svg?branch=master)](https://travis-ci.org/armujahid/reactnd-project-would-you-rather) [![Greenkeeper badge](https://badges.greenkeeper.io/armujahid/reactnd-project-would-you-rather.svg)](https://greenkeeper.io/)
 
 This project is created for assessment in Udacity's React and Redux course.
 This is basically a poll app in which user can create or answer polls with two options.
