@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { Card, CardHeader,CardBody, CardTitle, FormGroup, Label, Input, Form, Button, Row, Col} from 'reactstrap';
-import FaCheck from 'react-icons/lib/fa/check'
+import { FaCheck } from 'react-icons/fa'
 import User from './User'
 import { handleSavePollAnswer } from '../actions/shared'
 import { formatDate } from '../utils/helpers'
