@@ -5,8 +5,8 @@ cache:
   yarn: true
   directories:
   - node_modules
+install: yarn install
 script:
-  - yarn install
   - yarn build
   - cp CNAME ./build
 deploy:
