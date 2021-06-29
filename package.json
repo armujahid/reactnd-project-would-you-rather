@@ -23,7 +23,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.8"
+    "redux-devtools-extension": "^2.13.9"
   },
   "browserslist": [
     ">0.2%",
